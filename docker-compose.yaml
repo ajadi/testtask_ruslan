@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  nginx1:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    volumes:
+      - ./nginx1.conf:/etc/nginx/nginx.conf
+    ports:
+      - "8081:80"
+    depends_on:
+      - app
+
+  nginx2:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    volumes:
+      - ./nginx2.conf:/etc/nginx/nginx.conf
+    ports:
+      - "8082:80"
+    depends_on:
+      - app
+
+  nginx3:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    volumes:
+      - ./nginx3.conf:/etc/nginx/nginx.conf
+    ports:
+      - "8083:80"
+    depends_on:
+      - app
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    ports:
+      - "5000:5000"
